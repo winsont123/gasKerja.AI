@@ -51,10 +51,10 @@ gasKerja.AI:
 
 ## 🏗️ Tech Stack
 
-**Frontend:** HTML5, CSS3 (Bootstrap 5), Vanilla JavaScript, Web Speech API
-**Backend:** Node.js, Express.js
-**AI Engine:** Azure OpenAI
-**Document Processing:** PDF.js / Azure Document Intelligence
+- **Frontend:** HTML5, CSS3 (Bootstrap 5), Vanilla JavaScript, Web Speech API
+- **Backend:** Node.js, Express.js
+- **AI Engine:** Azure OpenAI
+- **Document Processing:** PDF.js / Azure Document Intelligence
 
 ---
 
@@ -68,7 +68,9 @@ gasKerja.AI:
 Jalankan perintah berikut di terminal Anda:
 
 git clone https://github.com/winsont123/gasKerja.AI.git
+
 cd gasKerja.AI
+
 npm install
 
 ### 3. Setup Environment
