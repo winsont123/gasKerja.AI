@@ -88,7 +88,7 @@ gasKerja.AI:
 ### 2. Install
 
 ```bash
-git clone https://github.com/USERNAME_ANDA/gaskerja-ai.git
+git clone https://github.com/winsont123/gaskerja-ai.git
 cd gaskerja-ai
 npm install
 ````
