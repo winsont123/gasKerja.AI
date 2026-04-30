@@ -1,0 +1,16 @@
+.step-container {
+    transition: all 0.3s ease-in-out;
+}
+
+.upload-card:hover {
+    background-color: #f8f9fa;
+    border-color: #0078d4 !important;
+}
+
+.cv-feedback {
+    border: 1px solid #eee;
+}
+
+.d-none {
+    display: none !important;
+}

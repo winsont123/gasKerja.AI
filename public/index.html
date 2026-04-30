@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gasKerja.Ai - Talent Intelligence System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+</head>
+<body class="bg-light">
+
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">🚀 gasKerja.Ai</a>
+        </div>
+    </nav>
+
+    <div class="container-fluid px-5 my-4">
+        
+        <!-- ========================================== -->
+        <!-- STEP 1: SETUP & CV UPLOAD (Desain Terpusat)-->
+        <!-- ========================================== -->
+        <div id="step-1" class="step-container active-step row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card p-5 shadow-sm border-0 rounded-4 mb-4">
+                    <h3 class="fw-bold mb-4 text-center text-primary">⚙️ Setup Profil & Target Karir</h3>
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">1. Target Perusahaan</label>
+                            <select class="form-select form-select-lg" id="companySelect">
+                                <option value="Mandiri Sekuritas">Mandiri Sekuritas</option>
+                                <option value="Indo Premier">Indo Premier Sekuritas</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">2. Posisi Spesifik</label>
+                            <select class="form-select form-select-lg" id="jobSelect">
+                                <option value="Equity Analyst">Equity Analyst (Property Sector)</option>
+                                <option value="Investment Research Analyst">Investment Research Analyst (Property Sector)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <label class="form-label fw-bold fs-5">3. Upload CV Dokumen (PDF)</label>
+                    <div class="upload-card text-center p-4 border-dashed bg-light mb-4" onclick="document.getElementById('cvInput').click()" style="cursor: pointer; border: 2px dashed #ccc; border-radius: 10px;">
+                        <input type="file" id="cvInput" hidden accept=".pdf" onclick="this.value=null" onchange="processCV()">
+                        <div id="upload-status" class="text-muted">
+                            <h4 id="upload-text" class="mb-2">📄 Klik area ini untuk Upload CV</h4>
+                            <p class="mb-0">Sistem akan mengekstrak kompetensi Anda secara otomatis</p>
+                        </div>
+                    </div>
+
+                    <!-- Hasil Analisis -->
+                    <div id="cv-feedback-box" class="card shadow-sm p-4 border-0 rounded-4 bg-white mb-4" style="display: none; border-left: 5px solid #ffc107 !important;">
+                        <h5 class="fw-bold text-dark mb-3"><span class="badge bg-warning text-dark me-2">AI Pre-Screening</span> Hasil Analisis:</h5>
+                        <div id="analysis-content" style="font-size: 0.95rem;"></div>
+                    </div>
+
+                    <button class="btn btn-primary btn-lg w-100 py-3 fs-5 fw-bold" id="startBtn" disabled onclick="goToStep(2)">Mulai Technical Interview →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- STEP 2: TECHNICAL INTERVIEW (Split Screen) -->
+        <!-- ========================================== -->
+        <div id="step-2" class="step-container d-none">
+            <div class="row gy-4">
+                
+                <!-- KIRI: CASE STUDY (PANI vs CTRA) -->
+                <div class="col-lg-5">
+                    <div class="card p-4 shadow-sm border-0 rounded-4 h-100 bg-dark text-white">
+                        <h4 class="fw-bold mb-3 text-warning">📊 Technical Case Study</h4>
+                        <p class="text-light">Posisi: <strong>Equity Analyst - Property Sector</strong></p>
+                        <hr class="border-secondary">
+                        
+                        <h5 class="fw-bold mt-3">Konteks Pasar:</h5>
+                        <p class="small text-light" style="line-height: 1.6;">
+                            Di tengah era suku bunga yang dinamis, sektor properti menunjukkan pergerakan yang bervariasi. Kita melihat ekspansi agresif dari <strong>PT Pantai Indah Kapuk Dua Tbk (PANI)</strong> melalui akuisisi lahan berskala besar, sementara <strong>PT Ciputra Development Tbk (CTRA)</strong> mempertahankan model bisnis *township* yang stabil dan tersebar di seluruh Indonesia.
+                        </p>
+
+                        <div class="bg-secondary p-3 rounded-3 mt-3">
+                            <h6 class="fw-bold text-warning">Instruksi Wawancara (Advanced):</h6>
+                            <ol class="small mb-0 ps-3 text-light text-start" style="line-height: 1.6;">
+                                <li class="mb-2"><strong>Valuasi & Growth:</strong> PANI saat ini diperdagangkan dengan valuasi premium (PBV tinggi) dibandingkan CTRA. Asumsi pertumbuhan seperti apa yang harus terealisasi agar valuasi PANI dapat dijustifikasi?</li>
+                                <li class="mb-2"><strong>Struktur Modal:</strong> Bandingkan risiko pendanaan untuk akuisisi <i>land bank</i> masif PANI dengan model bisnis <i>Joint Operation</i> (JO) milik CTRA. Bagaimana dampaknya terhadap kelonggaran <i>Interest Coverage Ratio</i> mereka?</li>
+                                <li><strong>Kesimpulan:</strong> Di tengah ketidakpastian suku bunga (BI Rate), model mana yang lebih tangguh? Berikan rekomendasi BUY/HOLD/SELL Anda untuk horizon 3 tahun ke depan.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KANAN: LIVE AI CHAT/VOICE -->
+                <div class="col-lg-7">
+                    <div class="card p-4 shadow-sm border-0 rounded-4 bg-white h-100">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="fw-bold text-primary mb-0">🎙️ AI Assessor</h4>
+                            <span class="badge bg-danger animate-pulse">🔴 Live Recoding</span>
+                        </div>
+                        
+                        <div id="chatBox" class="p-4 mb-3 rounded-3" style="flex-grow: 1; height: 400px; overflow-y: auto; background-color: #f4f6f9; border: 1px solid #e0e0e0;">
+                            <div class="mb-3 text-start">
+                                <span class="badge bg-primary mb-1">AI Assessor</span>
+                                <div class="bg-white p-3 rounded-3 shadow-sm d-inline-block border">
+                                    Selamat datang di tahap evaluasi teknikal. Silakan pelajari studi kasus PANI dan CTRA di layar sebelah kiri. Jika sudah siap, jelaskan analisis valuasi dan rekomendasi Anda menggunakan mikrofon.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-group input-group-lg shadow-sm">
+                            <button class="btn btn-outline-danger fw-bold px-4" id="micBtn" type="button">
+                                🎤 Bicara
+                            </button>
+                            <input type="text" id="chatInput" class="form-control fs-6" placeholder="Ketik atau ucapkan analisis Anda...">
+                            <button class="btn btn-primary fw-bold px-4" id="sendBtn" type="button">
+                                Kirim 🚀
+                            </button>
+                        </div>
+                        
+                        <div class="text-center mt-3">
+                            <button class="btn btn-link text-secondary" onclick="goToStep(1)">← Kembali ke Profil</button>
+                        </div>
+
+                        <!-- Taruh ini di bawah input chat Step 2 -->
+                        <hr class="mt-4">
+                        <button class="btn btn-danger w-100 fw-bold py-2 shadow-sm" onclick="finishInterview()">
+                            🏁 Selesaikan Wawancara & Lihat Hasil Akhir
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <!-- ========================================== -->
+        <!-- STEP 3: FINAL EVALUATION (Dual View Mode)  -->
+        <!-- ========================================== -->
+                <div id="step-3" class="step-container d-none row justify-content-center">
+                    <div class="col-md-10">
+                        <div class="card p-5 shadow-sm border-0 rounded-4 mb-4">
+                            
+                            <!-- Toggle Switch HRD vs Pelamar -->
+                            <div class="d-flex justify-content-center mb-5">
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-primary fw-bold px-4" id="btnPelamar" onclick="switchView('pelamar')">
+                                        👤 Tampilan Pelamar
+                                    </button>
+                                    <button type="button" class="btn btn-outline-primary fw-bold px-4" id="btnHrd" onclick="switchView('hrd')">
+                                        💼 Dashboard HRD (Private)
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- ========================================== -->
+                    <!-- LAYAR 1: TAMPILAN PELAMAR (Public)         -->
+                    <!-- ========================================== -->
+                    <div id="view-pelamar" class="text-center">
+                        <h2 class="fw-bold mb-3 text-dark">Wawancara Selesai! 🎉</h2>
+                        
+                        <!-- Kotak Feedback untuk Pelamar -->
+                        <div class="card shadow-sm p-4 border-1 bg-light text-start mx-auto mb-4" style="max-width: 650px; border-left: 5px solid #0d6efd !important;">
+                            <h5 class="fw-bold text-dark mb-3">📈 Feedback & Rekomendasi AI:</h5>
+                            <ul class="mb-0 text-start" style="font-size: 1rem;" id="pelamarFeedbackList">
+                                <li><i>Sedang memuat analisis dari AI...</i></li>
+                            </ul>
+                        </div>
+                        
+                        <h6 class="text-muted">Tim rekrutmen kami akan meninjau hasil ini dan menghubungi Anda.</h6>
+                    </div>
+
+                            <!-- ========================================== -->
+                            <!-- LAYAR 2: TAMPILAN HRD (Confidential)       -->
+                            <!-- ========================================== -->
+                            <div id="view-hrd" class="d-none">
+                                <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+                                    <h3 class="fw-bold text-primary mb-0">📊 AI Candidate Report</h3>
+                                    <span class="badge bg-success fs-6">Status: RECOMMENDED</span>
+                                </div>
+
+                                <div class="row">
+                                    <!-- Kolom Kiri: Skor & Metrik -->
+                                    <div class="col-md-4 text-center border-end">
+                                        <h6 class="text-muted fw-bold mb-3">Overall AI Score</h6>
+                                        <div class="d-inline-block rounded-circle bg-light border border-5 border-success p-3 shadow-sm mb-3" style="width: 130px; height: 130px;">
+                                            <h2 class="display-5 fw-bold text-success mb-0 mt-2" id="finalScore">85</h2>
+                                        </div>
+                                        <ul class="list-unstyled text-start small mt-3 px-3">
+                                            <li class="mb-2"><strong>Analisis Valuasi:</strong> 88/100</li>
+                                            <li class="mb-2"><strong>Pemahaman Pasar:</strong> 82/100</li>
+                                            <li><strong>Komunikasi:</strong> 90/100</li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- Kolom Kanan: Secret Feedback -->
+                                    <div class="col-md-8 px-4">
+                                        <h5 class="fw-bold text-dark mb-3"><span class="badge bg-dark text-white me-2">AI Secret Notes</span> Detail Performa:</h5>
+                                        
+                                        <div class="bg-light p-3 rounded-3 border">
+                                            <ul class="mb-0 text-start" style="font-size: 0.95rem;">
+                                                <li class="mb-3"><span class="text-success fw-bold">Kelebihan Analisis:</span> Pemahaman yang sangat tajam mengenai dampak suku bunga terhadap <i>marketing sales</i> CTRA. Kandidat memiliki logika investasi yang matang.</li>
+                                                <li class="mb-3"><span class="text-danger fw-bold">Area Perbaikan:</span> Masih kurang dalam menjustifikasi valuasi premium PANI menggunakan metrik PBV dan cadangan lahan.</li>
+                                                <li><span class="text-primary fw-bold">Keputusan Final:</span> Lolos ke tahap wawancara User (Head of Research). Fokuskan pertanyaan lanjutan pada pemodelan DCF.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tombol Reset (Hanya muncul di HRD) -->
+                            <div class="text-center mt-5">
+                                <button class="btn btn-outline-secondary fw-bold" onclick="window.location.reload()">🔄 Evaluasi Kandidat Lain</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
