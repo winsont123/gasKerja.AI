@@ -93,10 +93,10 @@ Buka browser dan akses: http://localhost:3000
 
 ## 🧪 Testing Flow
 
--Step 1 — CV Analysis: Upload CV -> Pilih role -> Tunggu analisis AI
--Step 2 — Interview: Klik "Mulai Interview" -> Jawab via Voice/Text -> Interaksi dengan AI
--Step 3 — Finish: Klik "Selesaikan Wawancara"
--Step 4 — Evaluation: Gunakan toggle untuk melihat Candidate View atau HR Dashboard
+- Step 1 — CV Analysis: Upload CV -> Pilih role -> Tunggu analisis AI
+- Step 2 — Interview: Klik "Mulai Interview" -> Jawab via Voice/Text -> Interaksi dengan AI
+- Step 3 — Finish: Klik "Selesaikan Wawancara"
+- Step 4 — Evaluation: Gunakan toggle untuk melihat Candidate View atau HR Dashboard
 
 ---
 
