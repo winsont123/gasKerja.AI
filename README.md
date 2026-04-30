@@ -77,11 +77,17 @@ npm install
 Buat file bernama .env di root directory proyek, lalu isi dengan format berikut:
 
 PORT=3000
+
 AZURE_OPENAI_ENDPOINT=https://YOUR_RESOURCE_NAME.openai.azure.com/
+
 AZURE_OPENAI_API_KEY=your_openai_api_key_here
+
 AZURE_OPENAI_DEPLOYMENT_NAME=your_model_deployment
+
 AZURE_DOCUMENT_ENDPOINT=https://YOUR_DOCUMENT_RESOURCE.cognitiveservices.azure.com/
+
 AZURE_DOCUMENT_KEY=your_document_api_key_here
+
 
 ### 4. Jalankan Server
 Ketik perintah ini di terminal:
